@@ -6,7 +6,7 @@
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 15:49:35 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/04/28 14:11:59 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/04/29 12:06:21 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	ft_putstr(char *str)
 }
 
 //PRINT total print len
-int     ft_printlen(char *str)
+int     ft_printstr(char *str)
 {
     int i;
 
     i = 0;
-    if (str == '\0')
+    if (str == NULL)
     {
         ft_putstr("(NULL)");
         return (6);
@@ -50,7 +50,7 @@ int     ft_printnbr(int n)
 
     len = 0;
     num = ft_itoa(n);
-    len = ft_printlen(num);
+    len = ft_printstr(num);
     free(num);
     return (len);
 }

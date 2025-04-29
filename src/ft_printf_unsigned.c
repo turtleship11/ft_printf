@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
+/*   ft_printf_unsigned.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/26 17:29:18 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/04/28 14:04:40 by jaeklee          ###   ########.fr       */
+/*   Updated: 2025/04/29 15:04:16 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int ft_num_len(unsigned int num)
     len = 0;
     while (num != 0)
     {
-        num % 10;
+        num = num / 10;
         len++;        
     }
     return (len);
@@ -37,7 +37,7 @@ char   *uitoa(unsigned int n)
     num[len] = '\0';
     while (n != 0)
     {
-        num[len - 1] = n * 10 + '0';
+        num[len - 1] = (n % 10) + '0';
         n = n / 10;
         len--;
     }
@@ -55,7 +55,7 @@ int ft_print_unsigned(unsigned int n)
     else
     {
         num = uitoa(n);
-        p_len += ft_printlen(num);
+        p_len += ft_printstr(num);
         free(num);
     }
     return (p_len);
