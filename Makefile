@@ -6,7 +6,7 @@
 #    By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/22 11:30:19 by jaeklee           #+#    #+#              #
-#    Updated: 2025/04/29 14:53:31 by jaeklee          ###   ########.fr        #
+#    Updated: 2025/04/30 11:55:58 by jaeklee          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,6 @@ fclean: clean
 # re build
 re: fclean all
 
-test: main.c $(NAME) $(LIBFT)
-	$(CC) -o $@ $(CFLAGS) main.c $(NAME) $(LIBFT) -lbsd
 
+test:	main.c $(NAME) $(LIBFT)
+		$(CC) -o $@ $(CFLAGS) main.c $(NAME) $(LIBFT) -lbsd

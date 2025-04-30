@@ -4,11 +4,11 @@
 
 int main(void)
 {
-    char *str = "Hello, World!";
+    char *str = "hello,world!";
     int num = 42;
     unsigned int u_num = 123456;
     int hex_num = 255;
-    void *ptr = &num;
+    void *ptr = 0;
     char ch = 'A';
 
     // 문자열 테스트
@@ -20,6 +20,11 @@ int main(void)
     printf("===== INTEGER TEST =====\n");
     printf("original printf : num = [%d]\n", num);
     ft_printf("ft_printf       : num = [%d]\n\n", num);
+
+    // %i 포맷 정수 테스트
+    printf("===== %%i FORMAT TEST =====\n");
+    printf("original printf : num = [%i]\n", num);
+    ft_printf("ft_printf       : num = [%i]\n\n", num);
 
     // 부호 없는 정수 테스트
     printf("===== UNSIGNED TEST =====\n");
