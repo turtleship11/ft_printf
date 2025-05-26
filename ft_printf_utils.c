@@ -1,30 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_printf_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 11:18:47 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/04/24 17:39:32 by jaeklee          ###   ########.fr       */
+/*   Created: 2025/05/15 16:35:52 by jaeklee           #+#    #+#             */
+/*   Updated: 2025/05/20 15:18:50 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+int	ft_printchar(int c)
+{
+	return (write(1, &c, 1));
+}
+
+void	ft_putstr(char *s)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	if (!s || !f)
-		return ;
-	len = ft_strlen(s);
-	while (i < len)
+	while (s[i] != '\0')
 	{
-		f(i, &s[i]);
+		write(1, &s[i], 1);
 		i++;
 	}
-	return ;
+}
+
+int	ft_printstr(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	while (str[i] != '\0')
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
+}
+
+int	ft_printpercent(void)
+{
+	write(1, "%", 1);
+	return (1);
 }

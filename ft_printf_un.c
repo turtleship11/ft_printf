@@ -1,57 +1,60 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_printf_un.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/21 10:45:09 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/04/24 17:41:23 by jaeklee          ###   ########.fr       */
+/*   Created: 2025/05/20 14:08:47 by jaeklee           #+#    #+#             */
+/*   Updated: 2025/05/20 15:19:48 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-static int	count_num(int n)
+int	numlen(unsigned int n)
 {
-	int	count;
+	int	i;
 
-	count = 0;
-	if (n <= 0)
-		count = 1;
+	i = 0;
+	if (n == 0)
+		i++;
 	while (n != 0)
 	{
 		n = n / 10;
-		count++;
+		i++;
 	}
-	return (count);
+	return (i);
 }
 
-char	*ft_itoa(int n)
+char	*ft_uitoa(unsigned int n)
 {
-	int			len;
-	int			sign;
-	char		*tmp;
-	long int	num;
+	char			*tmp;
+	unsigned int	num;
+	int				len;
 
-	sign = 0;
 	num = n;
-	len = count_num(num);
+	len = numlen(n);
 	tmp = malloc(len + 1);
 	if (!tmp)
 		return (NULL);
-	if (num < 0)
-	{
-		sign = -1;
-		num = num * -1;
-	}
 	tmp[len] = '\0';
-	while (--len >= 0)
+	while (len > 0)
 	{
+		len--;
 		tmp[len] = (num % 10) + '0';
-		num = num / 10 ;
-		if (len == 0 && sign == -1)
-			tmp[0] = '-';
+		num = num / 10;
 	}
 	return (tmp);
+}
+
+int	ft_printunnbr(unsigned int n)
+{
+	char	*num;
+	int		len;
+
+	num = ft_uitoa(n);
+	len = ft_printstr(num);
+	free(num);
+	return (len);
 }

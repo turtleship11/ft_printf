@@ -1,62 +1,64 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_unsigned.c                               :+:      :+:    :+:   */
+/*   ft_printf_nbr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jaeklee <jaeklee@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/26 17:29:18 by jaeklee           #+#    #+#             */
-/*   Updated: 2025/04/30 11:43:33 by jaeklee          ###   ########.fr       */
+/*   Created: 2025/05/20 15:16:07 by jaeklee           #+#    #+#             */
+/*   Updated: 2025/05/20 15:21:16 by jaeklee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_num_len(unsigned int num)
+static int	countnum(int n)
 {
 	int	len;
 
 	len = 0;
-	while (num != 0)
+	if (n <= 0)
+		len = 1;
+	while (n != 0)
 	{
-		num = num / 10;
+		n = n / 10;
 		len++;
 	}
 	return (len);
 }
 
-char	*uitoa(unsigned int n)
+char	*ft_itoa(int n)
 {
-	char	*num;
 	int		len;
+	char	*temp;
+	long	num;
 
-	len = ft_num_len(n);
-	num = malloc(len + 1);
-	if (!num)
+	num = n;
+	len = countnum(n);
+	temp = malloc(len + 1);
+	if (!temp)
 		return (NULL);
-	num[len] = '\0';
-	while (n != 0)
+	temp[len] = '\0';
+	if (num < 0)
+		num = -num;
+	while (len--)
 	{
-		num[len - 1] = (n % 10) + '0';
-		n = n / 10;
-		len--;
+		temp[len] = (num % 10) + '0';
+		num = num / 10;
 	}
-	return (num);
+	if (n < 0)
+		temp[0] = '-';
+	return (temp);
 }
 
-int	ft_print_unsigned(unsigned int n)
+int	ft_printnbr(int n)
 {
-	int		p_len;
+	int		p;
 	char	*num;
 
-	p_len = 0;
-	if (n == 0)
-		p_len += write(1, "0", 1);
-	else
-	{
-		num = uitoa(n);
-		p_len += ft_printstr(num);
-		free(num);
-	}
-	return (p_len);
+	p = 0;
+	num = ft_itoa(n);
+	p = ft_printstr(num);
+	free(num);
+	return (p);
 }
